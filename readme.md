@@ -4,4 +4,4 @@ A tool containg useful utilities for performing simple shortcut tasks on Windows
 
 ## Features
 
-[X] Lit Up - Turns up screen brightness to highest to the highest possible level. 🚧
+- [x] Lit Up - Turns up screen brightness to highest to the highest possible level. 🚧
