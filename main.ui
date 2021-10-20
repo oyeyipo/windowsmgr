@@ -6,64 +6,76 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>343</width>
-    <height>209</height>
+    <width>499</width>
+    <height>354</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>447</width>
-    <height>16777215</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="stackedWidget">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>60</y>
-      <width>50</width>
-      <height>50</height>
+      <x>110</x>
+      <y>100</y>
+      <width>100</width>
+      <height>100</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>1</number>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
-    <widget class="QWidget" name="page">
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>20</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="page_2">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </widget>
+    <property name="styleSheet">
+     <string notr="true">.QPushButton {
+	background-color: #ff6011;
+	color: #eeeeee;
+}</string>
+    </property>
+    <property name="text">
+     <string>Lit Out</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>100</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">.QPushButton {
+	background-color: rgb(0, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Lit Up</string>
+    </property>
    </widget>
   </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>499</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

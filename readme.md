@@ -18,6 +18,6 @@ A tool containg useful utilities for performing simple shortcut tasks on Windows
 - implement check for update
 - automatic update implementation
 - use nsis for package distribution
-- start using qt designer for ui part
+- start using qt designer for ui part 👌✅
 - create logo and branding (SWiT - simple windows tools)
 - do not forget to code sign the application

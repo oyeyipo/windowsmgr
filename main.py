@@ -1,66 +1,45 @@
 import sys
 import wmi
-from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QApplication, QPushButton
+from PySide6.QtCore import QFile, QIODevice, QObject, Slot
 
 
-TURN_UP_LIGHT = "Lit Up"
-TURN_LIGHT_OUT = "Lit Out"
+class MainWindow(QObject):
 
+    def __init__(self, ui_file_name, parent=None):
+        super(MainWindow, self).__init__(parent)
 
-class MyWidget(QtWidgets.QWidget):
+        ui_file = QFile(ui_file_name)
 
-    def __init__(self):
-        super().__init__()
+        if not ui_file.open(QIODevice.ReadOnly):
+            print(f"Cannot open {ui_file_name}: {ui_file.errorString()}")
+            sys.exit(-1)
 
-        self.lit_up = QtWidgets.QPushButton(TURN_UP_LIGHT)
-        self.lit_out = QtWidgets.QPushButton(TURN_LIGHT_OUT)
+        loader = QUiLoader()
+        self.window = loader.load(ui_file)
+        ui_file.close()
 
-        self.layout = QtWidgets.QVBoxLayout(self)
-        self.layout.addWidget(self.lit_up)
-        self.layout.addWidget(self.lit_out)
+        if not self.window:
+            print(loader.errorString())
+            sys.exit(-1)
 
-        self.lit_up.clicked.connect(self.light_control)
-        self.lit_out.clicked.connect(self.light_out)
+        btn_lit_out = self.window.findChild(QPushButton, 'pushButton')
+        btn_lit_out.clicked.connect(self.light_out)
 
-    @QtCore.Slot()
-    def light_control(self):
+        btn_lit_up = self.window.findChild(QPushButton, 'pushButton_2')
+        btn_lit_up.clicked.connect(self.light_up)
+        self.window.show()
+
+    @Slot()
+    def light_up(self):
         wmi.WMI(namespace='wmi').WmiMonitorBrightnessMethods()[0].WmiSetBrightness(100, 0)
 
-    @QtCore.Slot()
+    @Slot()
     def light_out(self):
         wmi.WMI(namespace='wmi').WmiMonitorBrightnessMethods()[0].WmiSetBrightness(0, 0)
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication()
-
-    widget = MyWidget()
-    widget.resize(250, 30)
-    widget.show()
-
-    sys.exit(app.exec())
-
-"""
-import sys
-from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import QFile, QIODevice
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
-    ui_file_name = "test.ui"
-    ui_file = QFile(ui_file_name)
-    if not ui_file.open(QIODevice.ReadOnly):
-        print(f"Cannot open {ui_file_name}: {ui_file.errorString()}")
-        sys.exit(-1)
-    loader = QUiLoader()
-    window = loader.load(ui_file)
-    ui_file.close()
-
-    if not window:
-        print(loader.errorString())
-        sys.exit(-1)
-    window.show()
-
+    window = MainWindow('main.ui')
     sys.exit(app.exec())
-"""
